@@ -197,6 +197,7 @@
 
       const utter = this.utters[text] || new SpeechSynthesisUtterance(text);
       utter.rate = 1;
+	  utter.voice = speechSynthesis.getVoices().find(voice => voice.lang === (/[a-z]/.test(text) ? 'en-US' : 'ru-RU'));
       if (!this.utters[text]) this.utters[text] = utter;
       speechSynthesis.cancel();
       speechSynthesis.speak(utter);
